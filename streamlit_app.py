@@ -1,4 +1,5 @@
 import streamlit as st
+cnx = st.connection("snowflake")   # ✅ corrected line
 from snowflake.snowpark.context import get_active_session
 from snowflake.snowpark.functions import col
 
@@ -42,7 +43,7 @@ if not (ingredients_string and name_on_order):
     st.warning("Please enter a name and select at least one fruit before submitting.")
     st.stop()
 
-# Prepare SQL safely (only NAME and INGREDIENTS)
+# Prepare SQL safely (only NAME_ON_ORDER and INGREDIENTS)
 my_insert_stmt = f"""
     INSERT INTO smoothies.public.orders(NAME_ON_ORDER, INGREDIENTS)
     VALUES (
@@ -56,4 +57,3 @@ st.write("SQL to be executed:", my_insert_stmt)
 if st.button('Submit Order'):
     session.sql(my_insert_stmt).collect()
     st.success(f"Your Smoothie is ordered, {name_on_order}!", icon="✅")
-
