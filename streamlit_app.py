@@ -1,4 +1,5 @@
 import streamlit as st
+import requests
 from snowflake.snowpark.functions import col
 
 cnx = st.connection("snowflake", type="snowflake")
@@ -44,4 +45,11 @@ st.write("SQL to be executed:", my_insert_stmt)
 if st.button('Submit Order'):
     session.sql(my_insert_stmt).collect()
     st.success(f"Your Smoothie is ordered, {name_on_order}!", icon="✅")
+
+# New Section to display SmoothieFroot nutrition information
+
+smoothiefroot_response = requests.get(
+    "https://my.smoothiefroot.com/api/fruit/watermelon"
+)
+st.text(smoothiefroot_response)
     
