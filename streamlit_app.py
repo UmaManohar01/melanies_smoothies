@@ -1,9 +1,8 @@
 import streamlit as st
 from snowflake.snowpark.functions import col
 
-# Create connection and session
 cnx = st.connection("snowflake", type="snowflake")
-session = cnx.session   # ✅ use session from connection
+session = cnx.session   
 
 # Title and intro
 st.title(":cup_with_straw: Customize Your Smoothie! :cup_with_straw:")
