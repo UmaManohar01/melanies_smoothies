@@ -2,18 +2,6 @@ import streamlit as st
 cnx = st.connection("snowflake")   # ✅ corrected line
 from snowflake.snowpark.context import get_active_session
 from snowflake.snowpark.functions import col
-# Explicit Snowflake connection
-cnx = st.connection(
-    "snowflake",
-    type="snowflake",
-    account="your_account",
-    user="your_username",
-    password="your_password",
-    role="your_role",
-    warehouse="your_warehouse",
-    database="smoothies",
-    schema="public"
-)
 
 # Title and intro
 st.title(":cup_with_straw: Customize Your Smoothie! :cup_with_straw:")
