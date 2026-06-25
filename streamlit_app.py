@@ -46,11 +46,13 @@ if st.button('Submit Order'):
     session.sql(my_insert_stmt).collect()
     st.success(f"Your Smoothie is ordered, {name_on_order}!", icon="✅")
 
-# New Section to display SmoothieFroot nutrition information
+for fruit_chosen in ingredients_list:
+    smoothiefroot_response = requests.get(
+        f"https://my.smoothiefroot.com/api/fruit/{fruit_chosen.lower()}"
+    )
 
-smoothiefroot_response = requests.get(
-    "https://my.smoothiefroot.com/api/fruit/watermelon"
-)
-st.text(smoothiefroot_response.json())
-sf_df = st.dataframe(data=smoothiefroot_response.json(),use_container_width=True)
+    st.dataframe(
+        data=smoothiefroot_response.json(),
+        use_container_width=True
+    )
     
