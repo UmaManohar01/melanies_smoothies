@@ -42,5 +42,7 @@ st.write("SQL to be executed:", my_insert_stmt)
 
 # Button to submit order
 if st.button('Submit Order'):
+    session.sql(my_insert_stmt).collect()
+    st.success(f"Your Smoothie is ordered, {name_on_order}!", icon="✅")
     session.sql(my_insert_stmt).execute()
     st.success(f"Your Smoothie is ordered, {name_on_order}!", icon="✅")
