@@ -48,7 +48,7 @@ if st.button('Submit Order'):
 
 for fruit_chosen in ingredients_list:
     smoothiefroot_response = requests.get(
-        f"https://my.smoothiefroot.com/api/fruit/{fruit_chosen}"
+        f"https://my.smoothiefroot.com/api/fruit/{fruit_chosen.lower()}"
     )
 
     st.dataframe(
